@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1= title
+    p Welcome to #{title}!
+
+    h2 NBA
+    p Enter the nickname (e.g. Lakers, etc.) of an NBA team to see today's scores for that team.
+    form(name="getScores", action="/scores", method="get")
+        input(type="text", name="NBA")
+        input(type="submit", value="Get Scores!")
+

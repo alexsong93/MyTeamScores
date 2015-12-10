@@ -5,6 +5,7 @@ var libxmljs = require("libxmljs");
 
 function getScores(req, res) {
     var NBAteamNickname = req.query.NBA;
+    var NBAteamNickname = NBAteamNickname.substring(0,1).toUpperCase() + NBAteamNickname.substring(1);
     var NHLteamNickname = req.query.NHL;
 
     var nbcBaseUrl = "http://scores.nbcsports.com/ticker/data/gamesMSNBC.js.asp?";
@@ -67,7 +68,7 @@ function getScores(req, res) {
             }
 
             if(!foundTeam) {
-                result = { "message" : "There is no game today for " + NBAteamNickname }
+                result = { "message" : "There is no game today for the " + NBAteamNickname }
             }
             else {
                 myTeam.name       = myTeamNode.attr('nickname').value();
