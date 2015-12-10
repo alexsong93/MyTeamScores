@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    h1= title
+    if result.message
+        p #{result.message}
+    else
+        p
+            b Game Status:&nbsp;
+            | #{result.NBA.gamestate.status} |&nbsp;
+            b Game Time:&nbsp;
+            | #{result.NBA.gamestate.gametime}
+        p
+            img(src=result.NBA.awayTeam.logo)
+            | #{result.NBA.awayTeam.name} #{result.NBA.awayTeam.score} :
+            | #{result.NBA.homeTeam.score} #{result.NBA.homeTeam.name}
+            img(src=result.NBA.homeTeam.logo)
+
+
+
