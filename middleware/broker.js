@@ -21,7 +21,7 @@ function getScores(req, res) {
         if (!teamName) {
             return;
         }
-        teamNames.push(teamName);
+        teamNames.push(formatTeamName(teamName, sport));
         var qs = setQueryString(sport, today);
         var nbcUrl = nbcBaseUrl + qs;
         nbcUrls.push(nbcUrl);
@@ -32,7 +32,7 @@ function getScores(req, res) {
         return getNbcData(nbcUrl)
             .then(function(data) {
                 var myTeamName = teamNames[index];
-                return parseNbcXML(data, formatTeamName(myTeamName));
+                return parseNbcXML(data, myTeamName);
             })
             .then(function(res) {
                 var sport = url.parse(nbcUrl, true).query.sport;
@@ -149,13 +149,31 @@ function parseNbcXML(data, myTeamName) {
 }
 
 
-function formatTeamName(teamName) {
-    teamName = teamName.trim().toLowerCase();
-    var nameArr = teamName.split(' ');
-    _.forEach(nameArr, function(name, index) {
-        nameArr[index] = name.substring(0,1).toUpperCase() + name.substring(1);
+function formatTeamName(teamName, sport) {
+    var nameArr = teamName.trim().toLowerCase().split(' ');
+    _.forEach(nameArr, function (name, index) {
+        nameArr[index] = name.substring(0, 1).toUpperCase() + name.substring(1);
     });
-    return nameArr.join(' ');
+
+    if(sport === 'EPL') {
+        return nameArr.join(' ');
+    }
+    var lastIndex = nameArr.length - 1;
+    if(sport === 'NBA') {
+        if(nameArr[0] === 'Portland') {
+            return ([ nameArr[lastIndex-1],  nameArr[lastIndex]]).join(' ');
+        } else {
+            return nameArr[lastIndex];
+        }
+    }
+    if(sport === 'NHL') {
+        if(nameArr[0] === 'Columbus' || nameArr[0] === 'Detroit' || nameArr[0] === 'Toronto') {
+            return ([ nameArr[lastIndex-1], nameArr[lastIndex]]).join(' ');
+        } else {
+            return nameArr[lastIndex];
+        }
+    }
+
 }
 
 function setQueryString(sport, date) {

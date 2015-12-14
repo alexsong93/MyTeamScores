@@ -8,11 +8,17 @@ block content
         p Enter the nickname (e.g. Lakers, etc.) of an NBA and/or NHL team to see today's scores for that team.
         form(name="getScores", action="/scores", method="get")
             p NBA:
-            input(type="text", name="NBA")
+            select(name="NBA")
+                for NBATeam in teams.NBA
+                    option= NBATeam
             p NHL:
-            input(type="text", name="NHL")
+            select(name="NHL")
+                for NHLTeam in teams.NHL
+                    option= NHLTeam
             p EPL:
-            input(type="text", name="EPL")
+            select(name="EPL")
+                for EPLTeam in teams.EPL
+                    option= EPLTeam
             br
             br
             input(type="submit", value="Get Scores!")

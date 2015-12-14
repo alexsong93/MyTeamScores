@@ -21,6 +21,7 @@ td {
 td#score {
     font-size: 25px;
     font-weight: bold;
+    width:150px;
 }
 
 img {

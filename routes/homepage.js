@@ -1,8 +1,8 @@
 var express = require('express');
+var homepage = require('../middleware/homepage');
 var router = express.Router();
 
-router.get('/', function(req, res) {
-    res.render('index', { title: 'MyTeamScores' });
-});
+router.route('/')
+    .get(homepage.render);
 
 module.exports = router;
