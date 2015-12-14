@@ -1,20 +1,27 @@
 extends layout
 
 block content
-    h1= title
-    if result.message
-        p #{result.message}
-    else
-        p
-            b Game Status:&nbsp;
-            | #{result.NBA.gamestate.status} |&nbsp;
-            b Game Time:&nbsp;
-            | #{result.NBA.gamestate.gametime}
-        p
-            img(src=result.NBA.awayTeam.logo)
-            | #{result.NBA.awayTeam.name} #{result.NBA.awayTeam.score} :
-            | #{result.NBA.homeTeam.score} #{result.NBA.homeTeam.name}
-            img(src=result.NBA.homeTeam.logo)
+    div.container
+        h1= title
+        br
+        each gameResult, sport in result
+            h2= sport
+            if gameResult.message
+                p= gameResult.message
+            else
+                table
+                    tr
+                        td
+                            img(src=gameResult.awayTeam.logo)
+                        td= gameResult.awayTeam.name
+                        td#score #{gameResult.awayTeam.score} : #{gameResult.homeTeam.score}
+                        td= gameResult.homeTeam.name
+                        td
+                            img(src=gameResult.homeTeam.logo)
+                    tr
+                        td(colspan=5) #{gameResult.gamestate.gametime} / #{gameResult.gamestate.status}
+                br
+        br
 
 
 
