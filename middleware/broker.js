@@ -187,6 +187,7 @@ function getTodayDate() {
     var dateObj = new Date();
     var year = dateObj.getFullYear().toString();
     var month = (dateObj.getMonth() + 1).toString();
+    month = (month.length === 1) ? "0" + month : month;
     var date = dateObj.getDate().toString();
     date = (date.length === 1) ? "0" + date : date;
 

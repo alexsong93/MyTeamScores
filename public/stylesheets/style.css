@@ -1,5 +1,5 @@
 body {
-    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -14,22 +14,37 @@ tr {
     width: 500px;
 }
 td {
-    width: 110px;
+    width: 100px;
     text-align: center;
     vertical-align: middle;
 }
-td#score {
-    font-size: 25px;
+td.score {
+    font-size: 20px;
     font-weight: bold;
     width:150px;
 }
 
 img {
-    height: 80px;
-    width: 80px;
+    height: 75px;
+    width: 75px;
 }
 
+h2.sport-header {
+    text-align: center;
+    margin-bottom: 0;
+}
 .container {
-    width:80%;
+    width:70%;
     margin: 0 auto;
+}
+
+.sport-section {
+    width:100%;
+    border: 1px solid black;
+}
+.sport-section#NBA {
+    /*background-color: #990000;*/
+}
+.sport-section.scores {
+    width:30%;
 }
